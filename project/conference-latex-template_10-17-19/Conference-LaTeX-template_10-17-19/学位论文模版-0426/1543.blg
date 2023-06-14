@@ -1,0 +1,70 @@
+This is BibTeX, Version 0.99d (TeX Live 2021/W32TeX)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: 1543.aux
+The style file: IEEEtran.bst
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Database file #1: cankao.bib
+Repeated entry---line 421 of file cankao.bib
+ : @article{lee2011accuracy
+ :                         ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 849 of file cankao.bib
+ : @article{rinaldi2016time
+ :                         ,
+I'm skipping whatever remains of this entry
+-- IEEEtran.bst version 1.14 (2015/08/26) by Michael Shell.
+-- http://www.michaelshell.org/tex/ieeetran/bibtex/
+-- See the "IEEEtran_bst_HOWTO.pdf" manual for usage information.
+Warning--empty journal in grewal2020kalman
+Warning--empty author in 888888
+Warning--empty journal in 888888
+Warning--empty author in 888889
+Warning--empty journal in 888889
+
+Done.
+You've used 66 entries,
+            4087 wiz_defined-function locations,
+            1176 strings with 21481 characters,
+and the built_in function-call counts, 55933 in all, are:
+= -- 4504
+> -- 1386
+< -- 518
++ -- 770
+- -- 240
+* -- 2689
+:= -- 8079
+add.period$ -- 152
+call.type$ -- 66
+change.case$ -- 66
+chr.to.int$ -- 1191
+cite$ -- 71
+duplicate$ -- 3947
+empty$ -- 4447
+format.name$ -- 288
+if$ -- 13197
+int.to.chr$ -- 0
+int.to.str$ -- 66
+missing$ -- 674
+newline$ -- 223
+num.names$ -- 64
+pop$ -- 1527
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 2
+skip$ -- 4325
+stack$ -- 0
+substring$ -- 2895
+swap$ -- 3329
+text.length$ -- 121
+text.prefix$ -- 0
+top$ -- 5
+type$ -- 66
+warning$ -- 5
+while$ -- 281
+width$ -- 68
+write$ -- 670
+(There were 2 error messages)

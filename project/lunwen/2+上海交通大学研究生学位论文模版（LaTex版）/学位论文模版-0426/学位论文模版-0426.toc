@@ -1,0 +1,38 @@
+\contentsline {section}{摘\hskip 1em\relax 要}{I}{figure.caption.1}%
+\contentsline {section}{ABSTRACT}{II}{figure.caption.1}%
+\contentsline {section}{\numberline {第一章}绪论}{1}{section.1}%
+\contentsline {subsection}{\numberline {1.1}研究背景}{1}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}研究现状}{2}{subsection.1.2}%
+\contentsline {subsection}{\numberline {1.3}本文主要工作}{5}{subsection.1.3}%
+\contentsline {subsection}{\numberline {1.4}本文的组织结构}{6}{subsection.1.4}%
+\contentsline {section}{\numberline {第二章}5G+TSN融合设计与研究动机}{7}{section.2}%
+\contentsline {subsection}{\numberline {2.1}5G网桥技术}{7}{subsection.2.1}%
+\contentsline {subsubsection}{\numberline {2.1.1}5G网络授时功能}{7}{subsubsection.2.1.1}%
+\contentsline {paragraph}{\numberline {2.1.1.1}1588v2协议}{7}{paragraph.2.1.1.1}%
+\contentsline {paragraph}{\numberline {2.1.1.2}1588v2的局限性}{8}{paragraph.2.1.1.2}%
+\contentsline {paragraph}{\numberline {2.1.1.3}5G广播同步}{9}{paragraph.2.1.1.3}%
+\contentsline {subsection}{\numberline {2.2}5G与TSN融合同步方案}{10}{subsection.2.2}%
+\contentsline {subsubsection}{\numberline {2.2.1}协议内容}{10}{subsubsection.2.2.1}%
+\contentsline {subsubsection}{\numberline {2.2.2}现有的融合优化方案}{10}{subsubsection.2.2.2}%
+\contentsline {subsection}{\numberline {2.3}异构网络协同需求}{11}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.4}研究动机}{11}{subsection.2.4}%
+\contentsline {subsection}{\numberline {2.5}本章小结}{12}{subsection.2.5}%
+\contentsline {section}{\numberline {第三章}混合同步架构}{13}{section.3}%
+\contentsline {subsection}{\numberline {3.1}混合同步架构预览}{13}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}初始化同步}{14}{subsection.3.2}%
+\contentsline {subsubsection}{\numberline {3.2.1}有线部分初始化同步}{14}{subsubsection.3.2.1}%
+\contentsline {subsubsection}{\numberline {3.2.2}无线部分初始化同步}{15}{subsubsection.3.2.2}%
+\contentsline {subsection}{\numberline {3.3}累积误差补偿}{15}{subsection.3.3}%
+\contentsline {subsubsection}{\numberline {3.3.1}时间戳修正}{16}{subsubsection.3.3.1}%
+\contentsline {subsubsection}{\numberline {3.3.2}传输延迟优化}{18}{subsubsection.3.3.2}%
+\contentsline {subsubsection}{\numberline {3.3.3}校验更新}{20}{subsubsection.3.3.3}%
+\contentsline {subsection}{\numberline {3.4}本章小结}{21}{subsection.3.4}%
+\contentsline {section}{\numberline {第四章}仿真实验}{23}{section.4}%
+\contentsline {section}{\numberline {第五章}全文总结}{23}{section.5}%
+\contentsline {subsection}{\numberline {5.1}主要结论}{23}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}研究展望}{23}{subsection.5.2}%
+\contentsline {section}{参\hskip 1em\relax 考\hskip 1em\relax 文\hskip 1em\relax 献}{24}{table.caption.12}%
+\contentsline {section}{附录}{25}{table.caption.12}%
+\contentsline {section}{攻读学位期间学术论文和科研成果目录}{26}{table.caption.12}%
+\contentsline {section}{致\hskip 2em\relax 谢}{27}{table.caption.12}%
+\contentsfinish 

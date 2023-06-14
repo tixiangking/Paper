@@ -1,0 +1,55 @@
+% $ based on Id: sample_english-v1.2.tex,v 1.2 2007/04/12 21:05:22 zlb Exp $
+% $Id: sample_english.tex 6 2011-01-24 13:13:33Z hsqi $
+
+\documentclass[english]{cccconf}
+%\documentclass[usemulticol,english]{cccconf}
+\usepackage[comma,numbers,square,sort&compress]{natbib}
+\usepackage{epstopdf}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{stfloats}
+\usepackage{bm}
+\usepackage[ruled,linesnumbered]{algorithm2e}
+
+\begin{document}
+
+\title{Title}
+
+\author{San Zhang\aref{sjtu}, Si Li\aref{sjtu}, Wu Wang\aref{sjtu}^*}
+
+% Note: the first argument in the \affiliation command is optional.
+% It defines a label for the affiliation which can be used in the \aref
+% command. If there is only one affiliation for all authors, then the
+% optional argument in the \affiliation command should be suppressed,
+% and the \aref command should also be removed after each author in
+% \author command, in this case the affiliation will not be numbered.
+
+
+\affiliation[sjtu]{Department of Automation, Shanghai Jiao Tong University, Shanghai 200240, China}
+\affiliation{*E-mail: wangwu@sjtu.edu.cn}  
+
+
+\maketitle
+
+\begin{abstract}
+Abstract
+\end{abstract}
+
+\keywords{keywords}
+
+
+
+\section{Introduction}
+
+Introduction.
+
+
+\section{Conclusion}
+Conclusion.
+
+% \bibliography{ccc.bib}
+% \bibliographystyle{unsrt}
+
+
+\end{document}

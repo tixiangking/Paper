@@ -1,0 +1,1 @@
+This paper studies the clock synchronization in the integration of IEEE 802.1 Time Sensitive Networking (TSN) and fifth-generation (5G) mobile technology in industrial communication networks. This topic is  interesting. The paper is well written and organized. The acceptance of the paper can be considered.

@@ -1,0 +1,385 @@
+\documentclass[english]{cccconf}
+%\documentclass[usemulticol,english]{cccconf}
+% The preceding line is only needed to identify funding in the first footnote. If that is unneeded, please comment it out.
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{algorithmic}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\usepackage{algorithm}
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+\begin{document}
+\title{Clock Synchronization Scheme for Integrated 5G and TSN Networks in Collaborative Manufacturing Systems}
+	
+
+\author{Xiang Chen\aref{sjtu},
+	Cailian Chen\aref{sjtu},
+	Qimin Xu\aref{sjtu}}
+
+% Note: the first argument in the \affiliation command is optional.
+% It defines a label for the affiliation which can be used in the \aref
+% command. If there is only one affiliation for all authors, then the
+% optional argument in the \affiliation command should be suppressed,
+% and the \aref command should also be removed after each author in
+% \author command, in this case the affiliation will not be numbered.
+
+% Çë×¢Òâ£º\affiliationÃüÁîµÄµÚÒ»¸ö²ÎÊýÊÇ¿ÉÑ¡µÄ£¬Ëü¶¨ÒåÁËÓÃÓÚ\arefÃüÁîµÄ±êÇ©¡£
+% Èç¹ûËùÓÐ×÷ÕßÖ»ÓÐÒ»¸öµ¥Î»£¬Çë²»ÒªÊ¹ÓÃ\affiliationÃüÁîµÄ¿ÉÑ¡²ÎÊý£¬Í¬Ê±ÔÚÉÏÃæ
+% µÄ\authorÃüÁîÖÐµÄÃ¿Î»×÷ÕßÐÕÃûºóÃæÒ²²»ÄÜÊ¹ÓÃ\arefÃüÁî£¬Ê¾ÀýÈçÏÂ
+% \author{First Author, Second Author, Third Author}
+% \affiliation{Chinese Academy of Sciences, Beijing 100190, P.~R.~China\email{ccc@amss.ac.cn}}
+% ´ËÊ±µ¥Î»Ç°²»»áÓÐÊý×Ö±àºÅ£¬×÷ÕßÐÕÃûºóÃæÒ²Ã»ÓÐ±àºÅ
+
+\affiliation[sjtu]{Department of Automation, Shanghai Jiao Tong University, Shanghai 200240, China}
+\affiliation{*E-mail: cailianchen@sjtu.edu.cn@sjtu.edu.cn}  
+
+\maketitle
+\begin{abstract}
+This paper focuses on the clock synchronization in the integration of IEEE 802.1 Time Sensitive Networking (TSN) and fifth-generation (5G) mobile technology in industrial communication networks. Clock synchronization is key function for deterministic communication by providing precise and unified time between different systems. Current researches only considers the a simplified  case of a single 5G bridge. However, multiple bridges increase cumulative synchronization error that degrade the accuracy of clock synchronization. To address this issue, the article proposes a clock synchronization scheme with timestamp compensation and carrier spacing optimization for synchronization accuracy. The proposed network architecture suggests a heterogeneous network convergence scheme for 5G+TSN in this particular scenario. This scheme incorporates carrier spacing optimization, which integrates synchronization accuracy and bandwidth utilization, and timestamp compensation to effectively reduce cumulative error in scenarios involving multiple bridges. The simulations demonstrated that our scheme provides accurate clock synchronization for multi-field manufacturing systems scenarios to achieve the cooperative work through the 5G network.
+\end{abstract}
+
+\keywords{Time Sensitive Networking (TSN), fifth-generation (5G), clock synchronization, end-to-end deterministic connection}
+
+
+\section{Introduction}
+In industrial control systems, industrial communication networks require high availability, reliability, and low latency. However, traditional industrial Ethernet systems are closed and incompatible with each other (shown in TABLE \uppercase\expandafter{\romannumeral1}). To improve real-time capabilities, the IEEE 802.1 Time Sensitive Network (TSN) standard is widely considered as a long-term substitute for proprietary technology in industrial control systems. Additionally, Industry 4.0 and Factory of Future require wireless network access in Ethernet. Nevertheless, traditional wireless networks face problems of large transmission delay and short distance\cite{2013Recommendations} (shown in TABLE \uppercase\expandafter{\romannumeral2}). The fifth generation (5G) mobile/cellular technology, designed to support ultra-reliable low latency communication (URLLC), is expected to meet the strict requirements of industrial systems in the wireless field. Thus, the integrated operation of 5G and TSN systems is crucial to achieving end-to-end deterministic connection in industrial networks. Research\cite{zhang2022wireless} present the application of the combined 5G+TSN system in industrial sites. 
+\begin{table}[!htb]
+	\centering
+	\caption{Current Main Ethernet Protocols}
+	\label{tab1}
+	\begin{tabular}{l|l|l}
+			\hline
+\textbf{Protocol}& \textbf{Organization}& \textbf{Manufacturer} \\
+\hline
+EtherNet/IP
+& ODVA
+& Rockwell \\
+\hline
+PROFINET
+& PROFIBUS
+& Siemens \\
+\hline
+EtherCAT
+& EtherCAT Association
+& Bev \\
+\hline
+POWERLINK
+& EPSG
+& ABB \\
+\hline
+CC-LINK
+& CC-Link Association
+& Mitsubishi \\
+\hline
+	\end{tabular}
+\end{table}
+\begin{table}[!htb]
+	\centering
+	\caption{Current Main Wireless Protocols}
+	\label{tab1}
+	\begin{tabular}{l|l|l}
+\hline
+\textbf{Protocol}& \textbf{Delay}& \textbf{Transmission Distance} \\
+\hline
+LTE
+& 6ms
+& 400-1000m \\
+\hline
+WIFI
+& 6ms
+& 100-200m \\
+\hline
+Zigbee
+& 1-3ms
+& 10-100m \\
+\hline		
+	\end{tabular}
+\end{table}
+
+Clock synchronization is the basis of 5G+TSN integration efficiently. The 3GPP protocol proposes a bridge architecture synchronization mode based on IEEE 802.1AS for clock synchronization, but specific synchronization rules and algorithm details are not specified\cite{888888}. Previous research analyzed the impact of various errors that may exist at the junction of the bridge and TSN nodes in the synchronization architecture on the synchronization algorithm\cite{9527833}. Research\cite{9211936} optimized the synchronization packets inside the 5G bridge, reducing communication overhead. Another study has introduced a clock domain compensation technology to estimate the residence time of 5G timing messages\cite{9674640}, and another research work has investigated how synchronization and syntonization errors affect the achievable end-to-end time synchronization accuracy in integrated 5G and TSN networks. However, current research only considers the simplest case of a single 5G bridge\cite{9557468}. In future intelligent factories integrated with industrial and 5G networks, multiple industrial Ethernet application scenarios may work cooperatively through the 5G network in the time domain\cite{8402373} (Fig.1). Thus, multiple bridges present in a system leads to the increased cumulative synchronization error. Therefore, this paper proposes the following contributions to address these issues:
+\begin{itemize}
+	\item We propose a clock synchronization method considering the multi-bridge caused error in multi-field manufacturing systems scenarios.
+	\item We propose a carrier spacing optimization scheme to solve the trade-off problem between synchronization accuracy and bandwidth utilization.
+	\item We propose a timestamp compensation scheme to solve the cumulative error problem in the case of multiple bridges.
+
+\end{itemize}
+\begin{figure}[htbp]
+	\centering
+	\setcounter{figure}{0}
+	\includegraphics[width=2in]{fig11.png}
+	\caption{Multi-field Manufacturing Systems Scenarios}
+	% \label{fig_sim}
+\end{figure}
+
+The paper is structured as follows: In Section 2, we analyze the clock model and error model. In Section 3, we propose a hybrid synchronous architecture that uses 5G+TSN as the core network to address the synchronization needs of multi-field manufacturing systems scenarios. In Section 4, we optimize the cumulative error in the synchronization process by carrier spacing optimization and timestamp compensation. In Section 5, we demonstrate the algorithm's effect through simulation.
+
+\section{ Multi-bridge Model}
+
+\subsection{Clock Model}
+The complexity of the industrial site significantly affect the crystal oscillator of the device clock, leading to deviations in the initial clock state and rate of change, resulting in clock errors. Thus, the node clock is expressed as:
+\begin{equation}
+	C_i(t) = (\alpha _i+\sigma_i)t + \beta _i +\delta_i
+\end{equation}
+where $\alpha_i$ and $\beta_i$ are the estimated time-varying clock skew and constant clock offset to the reference clock, and $\sigma_i$ and $\delta_i$ are the errors in the frequency estimation and time differences. Ideally, $\alpha_i = 1$ and $\beta_i = 0$. The change in slope arises from the drift of the internal crystal oscillator of the clock, while the difference in the initial state results from errors during network initialization.
+
+In the 5G-TSN bridge structure (as shown in Fig.2), 5G and TSN networks operate in different time domains. Thus, for the current bridge structure in  the 5G-TSN networks, the clock model of the TSN time domain can be expressed as:
+\begin{equation}
+	C_{TSN}(t) = (\alpha_{TSN}+\sigma_{TSN})t + \beta _{TSN} +\delta_{TSN}
+\end{equation}
+ Similarly, the clock model of the 5G part is written as:
+ \begin{equation}
+ 	C_{5G}(t) = (\alpha_{5G}+\sigma_{5G})t + \beta _{5G} +\delta_{5G}
+ \end{equation}
+where $\alpha_{TSN}$ and $\sigma_{TSN}$ represent the frequency synchronization correction estimate and error on the wired side, $\beta_{TSN}$ and $\delta_{TSN}$ represent the time bias synchronization correction estimate and error on the wired side. Similarly, $\alpha_{5G}$ and $\sigma_{5G}$ represent the frequency synchronization correction estimate and error on the wireless side, while $\beta_{5G}$ and $\delta_{5G}$ represent the estimated value and error of the time-bias synchronization correction on the wireless side. 
+
+It it is assumed that the synchronization errors $\sigma_{TSN}$ and $\delta_{TSN}$ are much smaller than those of the 5G network, $\sigma_{5G}$ and $\delta_{5G}$. Typically, the synchronization accuracy of the 5G network is at the microsecond level, while that of the TSN network is at the nanosecond level. These errors are usually acceptable when only one bridge is present, but in scenarios where there are multiple bridges in the network, the errors accumulate that significantly impacts clock synchronization. These timestamp errors impact synchronization accuracy by affecting the measurement of delay during clock synchronization. Hence, to reduce the error, we need to model and analyze the delay.
+\begin{figure}[htbp]
+	\centering
+	\setcounter{figure}{1}
+	\includegraphics[width=3.5in]{fig12.png}
+	\caption{5G-TSN Bridge}
+	% \label{fig_sim}
+\end{figure}
+\subsection{Delay Model}
+In the process of synchronization, the delay between nodes is an important factor that affects synchronization accuracy. In the network bridge structure, the 5G network bridge is composed of all 5G wireless nodes that relay the signal. Thus, the transmission delay between the internal nodes of the 5G network determines the transmission delay of the network bridge, thereby affecting the clock synchronization accuracy of the TSN devices at two-side ends. Thus, the delay is modeled as:
+\begin{equation}
+	D=D_d+D_r
+\end{equation}
+where $D_d$ is the deterministic delay, mostly composed of transmission delay that can be measured or eliminated. $D_r$ is the random delay, mostly composed of propagation delay jitter and cumulative error. While propagation delay jitter can be periodically measured to reduce its effect on synchronization accuracy\cite{9064350}, accumulated errors have a significant impact on clock synchronization accuracy in large-scale networks. To analyze the specific effects of accumulated error, it is necessary to model the queuing delay.
+\begin{figure}[htbp]
+	\centering
+	\setcounter{figure}{2}
+	\includegraphics[width=3.5in]{fig21.png}
+	\caption{Internal Synchronization Mode of 5G }
+	% \label{fig_sim}
+\end{figure}
+The internal synchronization mode of the 5G network is illustrated in Fig.3, where 5G wireless nodes synchronize by receiving Sync messages from the base station. When multiple nodes synchronize with the same base station simultaneously, queuing delay occurs. To calculate the expected value of the queuing delay, the queue generated by the non-clock-synchronous traffic arriving in batches at the switch is computed first, and the expected value of the queue is obtained by calculating the generating function of the queue. Then, the queue delay of the clock-synchronous flow in the presence of background traffic is analyzed to obtain the expected length of the queue. The calculation of background traffic adopts the non-preemptive consideration, which is more in line with the actual situation. Both the non-clock synchronous traffic queue and clock-synchronous traffic queue are modeled, and queuing theory is used to model and solve the Markov chain. The steady-state equation listed according to the Markov chain is:
+
+\begin{equation}
+	\left\{
+	\begin{aligned}
+		p_i\left( \lambda +i \mu \right) &=\sum_{j=0}^i{p_j \lambda  a_{i-j}+p_{i+1}\left( i+1 \right)  \mu\, ; 0\leqslant i<m},\\
+		p_i\left( \lambda +m \mu \right) &=\sum_{j=0}^i{p_j \lambda  a_{i-j}+p_{i+1}m \mu}\,; m\leqslant i.
+	\end{aligned}
+	\right.
+\end{equation}
+where $p_i$ is the probability of $i$ packets in the queue, $m$ is the maximum queue value, $\lambda$ is the total packet arrival rate, $\mu$ is the packet processing rate, and $a$ is the distribution of the number of packets arriving. And $c=\mu/\lambda $. We assume that when $k$ packets arrive at the base station, there are $v$ non-clock synchronous packets. There can be three cases:
+\begin{itemize}
+	\item Case 1: $v<m$, $k<m-v$, QueueLength = 0.
+	\item Case 2: $v<m$, $k>m-v$, QueueLength = $k+v-m$.
+	\item Case 3: $v>m$, QueueLength = $k$.
+\end{itemize}
+
+Based on these three cases, the expected value of queuing delay can be obtained by solving the Markov chain and summing with the full probability formula.
+\begin{equation}
+	\left\{
+	\begin{aligned}
+		L_q&=P_0 \sum_{i=0}^m{\left(k-m+i\right) \frac{\left(\lambda/\mu\right)^i}{i!}+P_0 \frac{k-m}{m!}\frac{\rho^m}{v!\left(1-\rho^m\right)}},\\
+		\rho&=\frac{\lambda}{\mu}.
+	\end{aligned}
+	\right.
+\end{equation}
+
+According to the 5G protocol standard 3GPP TS 22.104 for large-scale application scenarios, the upper limit of synchronization nodes in a single time domain is 100 when the service area is between 10 and 20 $km^2$\cite{888889}. By substituting these conditions into the queuing delay model, it is obtained that the queuing delay is less than 250 ns. Given the required synchronization accuracy of $1\mu s$, the random queuing delay has a negligible influence on the synchronization accuracy, and that only the fixed delay impacts synchronization accuracy. Thus, our timestamp compensation for multi-field manufacturing systems scenarios focus solely on the effect of fixed delay on clock synchronization under these conditions.
+
+\section{ Synchronization Architecture for Multi-bridge Heterogeneous Networks}
+\subsection{Network Structure}
+To address multi-field manufacturing system scenarios, we design a synchronization architecture for heterogeneous networks. This architecture formulates the different islanded areas based on industrial Ethernet networks into corresponding time-domain models. The 5G network acts as a bridge between these wired islands. In 3GPP, two main clock models are considered for time synchronization in integrated 5G and TSN systems, both of which comply with the IEEE 802.1 AS standard. These models include the boundary clock and the transparent clock\cite{9615318}.
+
+In the boundary clock, the 5G Radio Access Network (RAN) has direct access to the TSN master clock, providing timing information to user equipment (UE) through its own signaling and procedures. UE synchronizes TSN devices based on periodic information. In contrast, the transparent clock solution achieves time synchronization by exchanging PTP messages. Any intermediate 5G or TSN entity between the TSN main console and the TSN device will update the time spent by new PTP message in the entity.
+
+5G networks serve as transparent clocks, while wired networks serve as boundary nodes. The 5G RAN has direct access to the TSN Master Time, either through a direct connection to the TSN master clock or through an underlying transport network that supports PTP, which can reduce the transmission overhead of TSN timestamps in 5G networks.
+
+To meet assumptions and communication protocols, the number of wireless nodes in each network bridge should not exceed 100. When the number of nodes exceeds this number, a new boundary node will be established to split the network bridge. Figure 3 shows the overall architecture diagram.
+\begin{figure}[htbp]
+	\centering
+	\setcounter{figure}{3}
+	\includegraphics[width=3.5in]{fig17.png}
+	\caption{Diagram of slot allocation in the TAS model}
+	% \label{fig_sim}
+\end{figure}
+\subsection{Synchronization Mechanism}
+To synchronize the wired part, we adopt the GPTP synchronization scheme, while broadcast synchronization completes the synchronization of the wireless part. The accuracy of the synchronization within the 5G bridge affects the precision of the time calculation when the timestamp passes through the transparent clock. To synchronize the clock of a multi-hop large-scale wireless network node inside the 5G-TSN bridge, we first need to determine the hierarchy of each node, which forms the basis for locating each wireless node.
+
+The root node initiates the synchronization message with a count of $k=0$, the receiving node sets the count to $k+1$ and sends the broadcast synchronization message containing $k+1$ to the next level. To minimize energy consumption and reduce computational complexity while maintaining synchronization accuracy, we adopt the mechanism of inverse synchronization for the asymmetric network clock synchronization characteristics of the TSN+5G network\cite{8935413}. Timestamp conversion involves floating-point division, which needs to be performed at the TSN end since it has more computational resources.
+
+Specifically, the 5G nodes periodically launch synchronization request messages to the TSN switches of the edge nodes at both ends. The slave clock receives the reference timestamp $G$ from the master clock through several intermediate ones and records the local time $L$, which are then sent to the TSN nodes. The TSN node performs a linear regression process to estimate the frequency difference and clock deviation by exchanging several timestamps. The intermediate forwarding node is treated as a transparent clock.
+
+Finally, the correction time of each wireless node is modelled as:
+\begin{equation}
+	\widehat{L}=L\left(1+\frac{\widehat{\alpha}}{f_0}\right)-\widehat{\beta}+\left[\frac{G_0-L_0}{T_c}\right] T_c
+\end{equation}
+where $\widehat{\alpha}$ represents the estimation of frequency difference, and $\widehat{\beta}$ is the estimation of clock deviation. The term $[\frac{G_0-L_0}{T_c}] T_c$ represents the transmission delay from the 5G network node to the TSN node, $T_c$ the time slot of the 5G network and is the upper limit of accuracy that can be achieved by estimating the transmission delay during the 5G-TSN clock synchronization. This forms the basis for the subsequent synchronization accuracy optimization scheme.
+\section{Synchronization Error optimization}
+
+\subsection{Optimization Problem Formulation}
+According to Equation (7), the upper limit of error for estimating transmission delay during 5G-TSN synchronization in 5G networks is known to be $T_c/2$. As shown in Figure 5, the frame structure of 5G networks consists of a wireless frame and a subframe of the same length, which are 10ms and 1ms, respectively. Each time slot in 5G contains 14 OFDM symbols, with 4 OFDM symbols occupied by SSBS (clock synchronization messages). The duration and period of SSBS vary with different subcarrier intervals, and the interval of 5G subcarriers can be adjusted. By utilizing the property of the subcarrier interval, the number of subcarriers and the symbol length of OFDM can be reduced by increasing the subcarrier interval to reduce delay and cumulative error. Thus, we can obtain :
+\begin{equation}
+	\left\{
+	\begin{aligned}
+		T_{c}&=\frac{15kHz}{\triangle F},\\
+		\triangle F&=2^\mu\cdot15kHz.\\
+	\end{aligned}
+     \right.
+\end{equation}
+where $\triangle F$ is the sub-carrier spacing (SCS), $\mu=\{0,1,2,3,4,5\}$. It shows that when the active carrier bandwidth $f_c$ is fixed, increasing the sub-carrier spacing $\triangle F$ decreases clock synchronization errors $\varepsilon$.
+
+However, increasing the carrier spacing can also cause the following problems:
+\begin{itemize}
+	\item Reduced spectral efficiency: the larger the carrier interval, the smaller the amount of data that can be transmitted on each carrier, and the lower the spectral efficiency.
+	
+	\item Reduced anti-interference capability: the larger the carrier spacing, the larger the BER(Bit Error Rate) when encountering interference sources.
+	
+	\item Increased power consumption: if the BER is to be guaranteed low, the signal power needs to be enhanced, which leads to increased power consumption.
+	
+	\item Waste of resources: a large carrier spacing may cause some spectrum resources to be wasted.
+\end{itemize}
+Choosing an appropriate carrier spacing is crucial for achieving high-precision 5G+TSN synchronization. This problem can be reduced to a trade-off between synchronization accuracy and bandwidth utilization, which can be expressed as:
+\begin{equation}
+	\eta=f_c\cdot \frac{B}{12\cdot N_{RB}\cdot \triangle F}
+\end{equation}
+where $N_{RB}$ is the number of RBs, and $B$ is the network's bandwidth. To find the optimal carrier spacing, an optimization problem is constructed as follows:
+\begin{equation}
+	\begin{split}
+		&\min_{\triangle F} \,\, \omega_1 \cdot T_c+\omega_2 \cdot \frac{1}{\eta} \\
+		&s.t.\quad  \left\{\begin{array}{lc}
+			T_{cmin}\leq T_c \leq T_{cmax},\\
+			B_{min}\leq B \leq B_{max},\\
+			N_{RB}\leq 273.\\
+		\end{array}\right.
+	\end{split}
+\end{equation}
+where $\omega_1$ and $\omega_2$ represent the weights of synchronization accuracy and bandwidth utilization, respectively. Users determine the weights according to their needs. This method minimizes synchronization errors without significantly impacting the communication quality of the 5G network.
+\begin{figure}[htbp]
+	\centering
+	\setcounter{figure}{4}
+	\includegraphics[width=3in]{fig14.png}
+	\caption{5G Carrier Structure}
+	% \label{fig_sim}
+\end{figure}
+\subsection{Timestamp compensation Algorithm}
+When multiple bridges are connected to each other in the network, as shown in Fig.1, the cumulative error will be further amplified, and the timestamp needs to be compensated and corrected. At each point where the TSN network intersects with the 5G network, the synchronization process can be represented as in Fig.5. The TSN time domain at both ends can be abstracted as master-slave nodes. According to equations (2) and (3), the local time of the wired and wireless sides can be expressed as:
+\begin{eqnarray}
+	\left\{
+	\begin{aligned}
+		t_{\text {wired}}&=\left(\alpha_{TSN}+\sigma_{TSN}\right) t+\beta_{TSN}+\delta_{TSN},\\
+		t_{\text {wireless }}&=\left(\alpha_{5G}+\sigma_{5G}\right) t+\beta_{5G}+\delta_{5G}.\\
+	\end{aligned}
+    \right.
+\end{eqnarray}
+Due to differences in the accuracy of time bias and frequency estimation on both sides, clock synchronization between wired and wireless timestamp exchanges can cause boundary synchronization errors. When the left wired master clock sends a sync message containing a timestamp of time $t_1$, the corresponding reference time should be $t_1^{ref}$. When this message arrives on the wireless side, the nodes receive and record the timestamp $t_2$. The timestamp values are expressed as follows:
+\begin{equation}
+	\left\{
+	\begin{aligned}
+		t_{2}&=(t_1^{ref}+delay)(\alpha_{5G}+\sigma_{5G})+\beta_{5G}+\delta_{5G},\\
+		t_1^{ref}&=\frac{t_{1}-\beta_{TSN}-\delta_{TSN}}{\alpha_{TSN}+\sigma_{TSN}}.\\
+	\end{aligned}
+	\right.	
+\end{equation}
+Similarly, on the wireless network side, the node records the timestamp $t_3$ upon receiving the $Sync$ message and sends the  $Delay\_Req$ message. Subsequently, the wired network node records the timestamp $t_4$ after receiving  $Delay\_Req$. The values of the timestamps is written as:
+\begin{equation}
+	\left\{
+	\begin{aligned}
+		t_{4}&=(t_3^{ref}+delay)(\alpha_{TSN}+\sigma_{TSN})+\beta_{TSN}+\delta_{TSN},\\
+		t_3^{ref}&=\frac{t_{3}-\beta_{5G}-\delta_{5G}}{\alpha_{5G}+\sigma_{5G}}.
+	\end{aligned}
+	\right.	
+\end{equation}
+thus the transmission delay between the two network nodes is expressed as:
+\begin{equation}
+	\begin{split}
+		&2  delay =t_{2}-t_{1}+t_{4}-t_{3} \\
+		&=m\left(t_{2}-t_{1}+t_{4}-t_{3}\right)-(m-1 / m)\left(\beta_{TSN}+\delta_{TSN}\right)\\
+		&\quad+(m-1 / m)\left(\beta_{5G}+\delta_{5G}\right)\\
+		& \approx m\left(t_{2}-t_{1}+t_{4}-t_{3}\right)-(m-1 / m)\left(\beta_{5G}+\delta_{5G}\right)\\
+		&m=\frac{\alpha_{5G}+\sigma_{5G}}{\alpha_{TSN}+\sigma_{TSN}}		
+	\end{split}
+\end{equation}
+in equation 14, the synchronization error of the wired part is much smaller than that of the wireless part and is therefore neglected. It is important to note that the calculation of the timestamp and clock parameters should be performed on the side of the wired network (i.e., the TSN node), and then the result should be sent to the 5G network node via the $Delay\_Resp$ message.
+
+\begin{figure}[htbp]
+	\centering
+	\setcounter{figure}{5}
+	\includegraphics[width=2in]{fig10.png}
+	\caption{Synchronization process}
+	% \label{fig_sim}
+\end{figure}
+\section{Simulation Results}
+Based on the proposed synchronization architecture and model in Section 2 and 3, we conducted numerical simulations to evaluate the optimization and compensation schemes' performance. Initially, we examined the synchronization accuracy at various subcarrier spacing (SCS) values. Following the numerology setting of 5G NR system \cite{access2015requirements}, the maximum SCS is 480 kHz, and the Fourier transform (FFT) size is 4096, resulting in a time unit of 0.509 ns. We assumed the 5G internal UE clock drift compared to the gNB clock, $\frac{\alpha_{5G}}{\alpha_{TSN}}$, to be 10 ppm (10 ns per millisecond). Table 3 shows the simulation results.
+
+\begin{table}[!htb]
+	\centering
+	\caption{Carrier Spacing and Synchronization Errors}
+	\label{tab1}
+	\begin{tabular}{l|l|l}
+		\hline
+		 & \textbf{mean error(ns)}& \textbf{max error(ns)} \\
+		\hline
+		15kHz 
+		& 896
+		& 2525 \\
+		\hline
+		30kHz
+		& 425
+		& 1295 \\
+		\hline
+		60kHz
+		& 295
+		& 899 \\
+		\hline
+		120kHz
+		& 135
+		& 578 \\
+		\hline
+		240kHz
+		& 120
+		& 512 \\
+		\hline
+			480kHz
+		& 112
+		& 508 \\
+		\hline
+	\end{tabular}
+\end{table}
+
+
+It is observed that as the SCS increases, the synchronization error decreases. However, when the SCS reaches 120 kHz, the error decreases slowly, and when it reaches 240 kHz, the error size tends towards a constant value. Subsequently, the weights of synchronization accuracy and bandwidth utilization ($\omega_1,\omega_2$) were set to (0.5,0.5), respectively. By solving the optimization problem presented in Section 4, the optimal performance was obtained when the carrier bandwidth was 120 kHz. At this point, the total available bandwidth length was 393.12 MHz, achieving the highest utilization rate of the 5G network at 98\%, while the available bandwidth utilization rate was 83.38\%, fulfilling most of the transmission requirements.
+
+We conducted a simulation of the timestamp compensation after identifying the most suitable carrier interval. We modeled each mobile robot as a TSN endstation connected to a 5G UE via a variable number of TSN Bridges (in this case, transparent clocks). Both TSN and 5G devices were based on the omnet node class. The node classes were described as follows:
+\begin{itemize}
+	\item the TSN nodes in the network are also connected via a Carrier Sense Multiple Access (CSMA) channel model, which supports Layer 2 communications and meets the specification requirements of 802.1AS. A separate class defines the gPTP program installed on each node. The node types are divided into boundary clocks and common clocks, which determine their different modes of behavior. The common node receives synchronization information from the master clock and performs the transmission delay measurement procedure, while the boundary node performs the transmission delay measurement procedure as the master clock after receiving the synchronization requirements from the 5G node.
+	\item In 5G networks, the 5G-TSN bridge is the most crucial component. In the OMNeT++ simulation, the bridge's protocol converter is defined by two node classes: one acts as a wired port, responsible for connecting to the CSMA channel, while the other is set up as a 5G module and serves as a wireless port, connecting to the wireless channel. Both nodes share a local clock instance, reflecting the fact that they are located within the same device. The 5G nodes inside the bridge communicate using the 5G LENA module, which focuses on the PHY and MAC layers, implements the wireless channel, and supports various frame structures and frequency bands.
+\end{itemize}
+The network nodes are organized in a binary tree structure. Errors in multiple bridges have a probability of canceling each other out, causing the error size to fluctuate within a range. To investigate it, we conducted 100 simulations for each different number of bridges in the network and the results is shown in Fig. 7.
+
+\begin{figure}[htbp]
+	\centering
+	\setcounter{figure}{6}
+	\includegraphics[width=3in]{fig25.png}
+	\caption{Error probability in mliti-bridges network}
+	% \label{fig_sim}
+\end{figure}
+The fig.7 displays the relationship between the probability of synchronization error greater than 1 $\mu s$ and the network size, represented by the number of 5G-TSN bridges in the network. As the network size and the number of bridges increase, the probability of synchronization error exceeding the minimum accuracy requirement also increases. When the number of bridges reaches 13,000, the probability of synchronization error exceeding 1 $\mu s$ is above 90\%. Therefore, we applied the algorithm for timestamp compensation, and the results before and after compensation are compared as follows:
+\begin{figure}[htbp]
+	\centering
+	\setcounter{figure}{7}
+	\includegraphics[width=3in]{fig24.png}
+	\caption{Comparison of error probability after timestamp compensation }
+	% \label{fig_sim}
+\end{figure}
+\begin{figure}[htbp]
+	\centering
+	\setcounter{figure}{8}
+	\includegraphics[width=3in]{fig23.png}
+	\caption{Average error comparison}
+	% \label{fig_sim}
+\end{figure}
+
+Figure 8 illustrates that the probability of synchronization errors exceeding 1$\mu s$ after compensation is greatly reduced and kept within 20\%. Figure 9 shows the change in the average synchronization error before and after compensation. It can be observed that the average synchronization error before compensation reaches approximately 10 microseconds when the network size reaches 10,000 or more. However, after compensation, the average synchronization error is controlled to within 900ns, effectively improving the systems using integrated 5G and TSN synchronization accuracy.
+\section{Conclution}
+This article discusses the integration of 5G and TSN systems in industrial communication networks. The article proposes a clock synchronization scheme for multi-field manufacturing systems scenarios. Additionally, a timestamp compensation scheme for multi-hop synchronization errors and a carrier spacing optimization scheme for synchronization accuracy in 5G+TSN clock synchronization are proposed. The proposed algorithm's performance is evaluated through simulations, and it is observed that the synchronization error decreases as the subcarrier spacing (SCS) increases. The optimal performance is achieved when the carrier bandwidth is 120 kHz. This article highlights the importance of the proposed algorithm for timestamp compensation in addressing synchronization errors in large networks. This article proves that the proposed synchronization architecture and model can effectively address the synchronization needs of multi-field manufacturing systems scenarios.
+\bibliography{cx.bib}
+\bibliographystyle{IEEEtran}
+\end{document}

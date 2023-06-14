@@ -1,0 +1,69 @@
+\contentsline {section}{摘\hskip 1em\relax 要}{I}{figure.caption.1}%
+\contentsline {section}{ABSTRACT}{III}{figure.caption.1}%
+\contentsline {section}{\numberline {第一章}绪论}{1}{section.1}%
+\contentsline {subsection}{\numberline {1.1}研究背景}{1}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}研究现状}{4}{subsection.1.2}%
+\contentsline {subsubsection}{\numberline {1.2.1}有线网络时钟同步}{4}{subsubsection.1.2.1}%
+\contentsline {paragraph}{1588v2协议}{5}{subsubsection.1.2.1}%
+\contentsline {paragraph}{1588v2的局限性}{6}{equation.1.1}%
+\contentsline {paragraph}{针对1588v2的相关研究}{6}{equation.1.1}%
+\contentsline {subsubsection}{\numberline {1.2.2}无线网络时钟同步}{7}{subsubsection.1.2.2}%
+\contentsline {subsubsection}{\numberline {1.2.3}异构网络时钟同步设计}{8}{subsubsection.1.2.3}%
+\contentsline {paragraph}{基于网络协议的时钟同步算法}{8}{subsubsubsection.1.2.3.1}%
+\contentsline {paragraph}{基于全球定位系统的时钟同步算法}{8}{equation.1.2}%
+\contentsline {paragraph}{基于数据融合的时钟同步算法}{9}{equation.1.3}%
+\contentsline {paragraph}{存在的问题}{9}{equation.1.4}%
+\contentsline {paragraph}{5G网桥技术}{11}{subsubsubsection.1.2.3.2}%
+\contentsline {paragraph}{5G网络授时功能}{11}{figure.1.2}%
+\contentsline {paragraph}{5G广播同步}{11}{figure.1.2}%
+\contentsline {paragraph}{5G与TSN融合同步方案}{12}{figure.1.3}%
+\contentsline {paragraph}{现有的融合优化方案}{12}{figure.1.3}%
+\contentsline {subsection}{\numberline {1.3}本文的研究内容}{14}{subsection.1.3}%
+\contentsline {subsection}{\numberline {1.4}本章小结}{17}{subsection.1.4}%
+\contentsline {section}{\numberline {第二章}有线/无线网络混合时钟同步架构设计}{18}{section.2}%
+\contentsline {subsection}{\numberline {2.1}时钟模型}{18}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}时延模型}{19}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}混合时钟同步架构设计}{21}{subsection.2.3}%
+\contentsline {paragraph}{预处理}{23}{ALC@unique.10}%
+\contentsline {paragraph}{构建最小生成树}{23}{ALC@unique.10}%
+\contentsline {paragraph}{分层}{23}{ALC@unique.10}%
+\contentsline {paragraph}{分析与优化}{24}{ALC@unique.10}%
+\contentsline {subsection}{\numberline {2.4}初始化同步}{27}{subsection.2.4}%
+\contentsline {subsubsection}{\numberline {2.4.1}有线部分初始化同步}{27}{subsubsection.2.4.1}%
+\contentsline {subsubsection}{\numberline {2.4.2}无线部分初始化同步}{28}{subsubsection.2.4.2}%
+\contentsline {subsubsection}{\numberline {2.4.3}校验更新}{30}{subsubsection.2.4.3}%
+\contentsline {subsection}{\numberline {2.5}混合架构时钟同步评估指标}{32}{subsection.2.5}%
+\contentsline {paragraph}{同步精度}{32}{subsection.2.5}%
+\contentsline {paragraph}{同步稳定性}{32}{equation.2.18}%
+\contentsline {paragraph}{收敛速度}{33}{equation.2.19}%
+\contentsline {paragraph}{能耗}{33}{equation.2.20}%
+\contentsline {subsection}{\numberline {2.6}性能优化方法}{33}{subsection.2.6}%
+\contentsline {subsection}{\numberline {2.7}分层算法仿真}{34}{subsection.2.7}%
+\contentsline {subsection}{\numberline {2.8}本章小结}{41}{subsection.2.8}%
+\contentsline {section}{\numberline {第三章}面向5G-TSN时钟同步的均衡器设计}{42}{section.3}%
+\contentsline {subsection}{\numberline {3.1}多径衰落产生的原因}{42}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}多径衰落对5G网络时钟同步的影响}{42}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}5G网络均衡器设计}{44}{subsection.3.3}%
+\contentsline {subsubsection}{\numberline {3.3.1}线性均衡器}{44}{subsubsection.3.3.1}%
+\contentsline {subsubsection}{\numberline {3.3.2}判决反馈均衡器}{45}{subsubsection.3.3.2}%
+\contentsline {subsubsection}{\numberline {3.3.3}自适应均衡器}{45}{subsubsection.3.3.3}%
+\contentsline {subsubsection}{\numberline {3.3.4}针对5G网络均衡器设计}{46}{subsubsection.3.3.4}%
+\contentsline {paragraph}{收敛速度}{47}{subsubsection.3.3.4}%
+\contentsline {paragraph}{抗干扰性能}{47}{subsubsection.3.3.4}%
+\contentsline {paragraph}{计算复杂度}{47}{subsubsection.3.3.4}%
+\contentsline {subsubsection}{\numberline {3.3.5}ADFE设计流程}{47}{subsubsection.3.3.5}%
+\contentsline {subsection}{\numberline {3.4}均衡器仿真}{49}{subsection.3.4}%
+\contentsline {paragraph}{线性均衡器与ADFE的对比实验}{51}{figure.3.3}%
+\contentsline {subsection}{\numberline {3.5}本章小结}{55}{subsection.3.5}%
+\contentsline {section}{\numberline {第四章}5G-TSN异构网络的时钟同步优化}{56}{section.4}%
+\contentsline {subsection}{\numberline {4.1}SCS优化问题构建}{56}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}SCS优化仿真}{57}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}时间戳补偿算法}{58}{subsection.4.3}%
+\contentsline {subsection}{\numberline {4.4}时间戳补偿仿真}{60}{subsection.4.4}%
+\contentsline {subsection}{\numberline {4.5}本章小节}{63}{subsection.4.5}%
+\contentsline {section}{\numberline {第五章}全文总结}{64}{section.5}%
+\contentsline {subsection}{\numberline {5.1}工作总结}{64}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}研究课题展望}{64}{subsection.5.2}%
+\contentsline {section}{攻读学位期间学术论文和科研成果目录}{75}{Item.35}%
+\contentsline {section}{致\hskip 2em\relax 谢}{76}{Item.35}%
+\contentsfinish 
